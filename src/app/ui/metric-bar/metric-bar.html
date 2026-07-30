@@ -1,0 +1,25 @@
+<div class="metric" [attr.data-rating]="rating()">
+  <div class="metric-head">
+    <span class="metric-label">{{ label() }}</span>
+    <span class="metric-value">{{ display() }}</span>
+  </div>
+  <svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+    <rect class="band-good" x="0" y="3" [attr.width]="goodWidth()" height="4" rx="2" />
+    <rect
+      class="band-average"
+      [attr.x]="goodWidth()"
+      y="3"
+      [attr.width]="averageWidth()"
+      height="4"
+    />
+    <rect
+      class="band-poor"
+      [attr.x]="goodWidth() + averageWidth()"
+      y="3"
+      [attr.width]="100 - goodWidth() - averageWidth()"
+      height="4"
+      rx="2"
+    />
+    <rect class="marker" [attr.x]="markerX()" y="0.5" width="0.6" height="9" rx="0.3" />
+  </svg>
+</div>

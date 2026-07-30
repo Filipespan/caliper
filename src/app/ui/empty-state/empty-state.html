@@ -1,0 +1,12 @@
+<div class="empty">
+  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <rect x="7" y="9" width="34" height="30" rx="4" />
+    <path d="M7 19h34" />
+    <path d="M16 28h16" stroke-linecap="round" />
+  </svg>
+  <p class="empty-title">{{ title() }}</p>
+  @if (description(); as text) {
+    <p class="empty-desc">{{ text }}</p>
+  }
+  <ng-content />
+</div>

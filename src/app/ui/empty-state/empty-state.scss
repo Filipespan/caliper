@@ -1,0 +1,29 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--cal-space-2);
+  padding: var(--cal-space-6) var(--cal-space-4);
+  border: 1px dashed var(--cal-border);
+  border-radius: var(--cal-radius-lg);
+  text-align: center;
+  color: var(--cal-text-muted);
+}
+
+svg {
+  width: 44px;
+  height: 44px;
+  color: var(--cal-border);
+}
+
+.empty-title {
+  margin: 0;
+  font-weight: 600;
+  color: var(--cal-text);
+}
+
+.empty-desc {
+  margin: 0;
+  max-width: 46ch;
+  font-size: var(--cal-text-sm);
+}
