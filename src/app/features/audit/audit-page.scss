@@ -1,0 +1,111 @@
+:host {
+  display: block;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--cal-space-6) var(--cal-space-4) var(--cal-space-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--cal-space-5);
+}
+
+.intro h1 {
+  font-size: var(--cal-text-2xl);
+  letter-spacing: -0.02em;
+}
+
+.intro p {
+  margin: var(--cal-space-1) 0 0;
+  color: var(--cal-text-muted);
+}
+
+.audit-form {
+  display: flex;
+  gap: var(--cal-space-3);
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.url-field {
+  flex: 1 1 320px;
+}
+
+.status {
+  margin: 0;
+  color: var(--cal-text-muted);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cal-space-4);
+  flex-wrap: wrap;
+  padding: var(--cal-space-4);
+  border: 1px solid var(--cal-poor);
+  border-radius: var(--cal-radius-md);
+  background: var(--cal-poor-bg);
+  color: var(--cal-poor);
+
+  p {
+    margin: 0;
+  }
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--cal-space-4);
+}
+
+.note {
+  margin: 0;
+  font-size: var(--cal-text-sm);
+  color: var(--cal-text-muted);
+}
+
+.history {
+  h2 {
+    font-size: var(--cal-text-lg);
+    margin-bottom: var(--cal-space-3);
+  }
+
+  ul {
+    list-style: none;
+    margin: 0 0 var(--cal-space-3);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--cal-space-2);
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--cal-space-3);
+    padding: var(--cal-space-3) var(--cal-space-4);
+    background: var(--cal-surface);
+    border: 1px solid var(--cal-border);
+    border-radius: var(--cal-radius-md);
+  }
+}
+
+.history-url {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--cal-accent);
+  cursor: pointer;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.history-scores {
+  display: flex;
+  gap: var(--cal-space-3);
+  font-family: var(--cal-font-mono);
+  font-size: var(--cal-text-sm);
+  color: var(--cal-text-muted);
+  white-space: nowrap;
+}

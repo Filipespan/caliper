@@ -1,0 +1,70 @@
+<section class="intro">
+  <h1>{{ i18n.messages().appName }}</h1>
+  <p>{{ i18n.messages().tagline }}</p>
+</section>
+
+<form class="audit-form" (ngSubmit)="submit()">
+  <mat-form-field appearance="outline" class="url-field">
+    <mat-label>{{ i18n.messages().urlLabel }}</mat-label>
+    <input
+      matInput
+      type="url"
+      inputmode="url"
+      autocomplete="url"
+      [formControl]="url"
+      [placeholder]="i18n.messages().urlPlaceholder"
+    />
+    @if (urlInvalid()) {
+      <mat-error>{{ i18n.messages().urlInvalid }}</mat-error>
+    }
+  </mat-form-field>
+
+  <button matButton="filled" type="submit" [disabled]="loading()">
+    {{ loading() ? i18n.messages().running : i18n.messages().runAudit }}
+  </button>
+</form>
+
+@if (loading()) {
+  <p class="status" role="status">{{ i18n.messages().running }}</p>
+}
+
+@if (failure(); as error) {
+  <div class="error" role="alert">
+    <p>{{ i18n.messages()[error.messageKey] }}</p>
+    <button matButton (click)="submit()">{{ i18n.messages().retry }}</button>
+  </div>
+}
+
+@if (pair(); as result) {
+  <div class="results">
+    <cal-audit-summary [result]="result.mobile" />
+    <cal-audit-summary [result]="result.desktop" />
+  </div>
+  <p class="note">{{ i18n.messages().labDataNote }}</p>
+}
+
+<section class="history">
+  <h2>{{ i18n.messages().recentRuns }}</h2>
+
+  @if (history.entries().length === 0) {
+    <cal-empty-state
+      [title]="i18n.messages().recentEmptyTitle"
+      [description]="i18n.messages().recentEmptyBody"
+    />
+  } @else {
+    <ul>
+      @for (entry of history.entries(); track entry.url) {
+        <li>
+          <button type="button" class="history-url" (click)="rerun(entry.url)">
+            {{ entry.url }}
+          </button>
+          <span class="history-scores">
+            <span>{{ i18n.messages().strategyMobile }} {{ entry.mobileScore ?? '--' }}</span>
+            <span>{{ i18n.messages().strategyDesktop }} {{ entry.desktopScore ?? '--' }}</span>
+          </span>
+        </li>
+      }
+    </ul>
+    <button matButton (click)="history.clear()">{{ i18n.messages().clearHistory }}</button>
+  }
+</section>
