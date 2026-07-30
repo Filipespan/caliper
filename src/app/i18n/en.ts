@@ -52,11 +52,23 @@ export const en = {
   compareProgress: 'Auditing {done} of {total}',
 
   aboutTitle: 'What the numbers mean',
+  aboutIntro:
+    'Every threshold below comes from the Core Web Vitals definitions Google publishes. Caliper does not invent bands of its own.',
   aboutThresholds: 'Thresholds',
   aboutLabVsField: 'Lab data and field data',
   aboutColumnMetric: 'Metric',
   aboutColumnGood: 'Good',
   aboutColumnPoor: 'Poor',
+  aboutLcpBody:
+    'Largest Contentful Paint is when the biggest element in the viewport finishes painting. It tracks perceived load, so a fast first paint with a slow hero image still scores badly.',
+  aboutInpBody:
+    'Interaction to Next Paint measures the delay between an interaction and the next frame. Lighthouse cannot simulate a real click, so this one only appears when the page has enough traffic in the Chrome UX Report.',
+  aboutClsBody:
+    'Cumulative Layout Shift adds up unexpected movement of visible elements. Ads, late fonts and images without dimensions are the usual causes.',
+  aboutLabBody:
+    'Lab data comes from a single Lighthouse run on a simulated mid-tier phone. It is repeatable and good for comparing two builds, and it never sees your actual users.',
+  aboutFieldBody:
+    'Field data comes from the Chrome UX Report, aggregated over 28 days of real visits. It is what Search uses, and it only exists for pages with enough traffic.',
 
   settingsTitle: 'API key',
   settingsBody:

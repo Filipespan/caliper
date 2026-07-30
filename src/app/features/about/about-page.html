@@ -1,0 +1,35 @@
+<h1>{{ i18n.messages().aboutTitle }}</h1>
+<p class="lead">{{ i18n.messages().aboutIntro }}</p>
+
+<h2>{{ i18n.messages().aboutThresholds }}</h2>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">{{ i18n.messages().aboutColumnMetric }}</th>
+        <th scope="col">{{ i18n.messages().aboutColumnGood }}</th>
+        <th scope="col">{{ i18n.messages().aboutColumnPoor }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows(); track row.id) {
+        <tr>
+          <th scope="row">{{ row.label }}</th>
+          <td>&le; {{ row.good }}</td>
+          <td>&gt; {{ row.poor }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+@for (row of rows(); track row.id) {
+  <section class="metric-note">
+    <h3>{{ row.label }}</h3>
+    <p>{{ row.body }}</p>
+  </section>
+}
+
+<h2>{{ i18n.messages().aboutLabVsField }}</h2>
+<p>{{ i18n.messages().aboutLabBody }}</p>
+<p>{{ i18n.messages().aboutFieldBody }}</p>

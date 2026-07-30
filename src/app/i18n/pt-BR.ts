@@ -56,11 +56,23 @@ export const ptBR: Dictionary = {
   compareProgress: 'Auditando {done} de {total}',
 
   aboutTitle: 'O que os números significam',
+  aboutIntro:
+    'Todos os limiares abaixo vêm das definições de Core Web Vitals publicadas pelo Google. O Caliper não inventa faixa própria.',
   aboutThresholds: 'Limiares',
   aboutLabVsField: 'Dado de laboratório e dado de campo',
   aboutColumnMetric: 'Métrica',
   aboutColumnGood: 'Bom',
   aboutColumnPoor: 'Ruim',
+  aboutLcpBody:
+    'Largest Contentful Paint é o instante em que o maior elemento da viewport termina de pintar. Ele mede carregamento percebido, então uma primeira pintura rápida com imagem principal lenta continua indo mal.',
+  aboutInpBody:
+    'Interaction to Next Paint mede o atraso entre uma interação e o próximo quadro. O Lighthouse não simula clique real, então essa métrica só aparece quando a página tem tráfego suficiente no Chrome UX Report.',
+  aboutClsBody:
+    'Cumulative Layout Shift soma o movimento inesperado de elementos visíveis. Anúncios, fontes que chegam tarde e imagens sem dimensão são as causas de sempre.',
+  aboutLabBody:
+    'Dado de laboratório vem de uma execução do Lighthouse em celular intermediário simulado. É repetível e serve para comparar duas versões, e nunca enxerga os seus usuários reais.',
+  aboutFieldBody:
+    'Dado de campo vem do Chrome UX Report, agregado em 28 dias de visitas reais. É o que a Busca usa, e só existe para páginas com tráfego suficiente.',
 
   settingsTitle: 'Chave de API',
   settingsBody:

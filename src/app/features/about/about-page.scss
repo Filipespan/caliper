@@ -1,0 +1,74 @@
+:host {
+  display: block;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--cal-space-6) var(--cal-space-4) var(--cal-space-7);
+}
+
+h1 {
+  font-size: var(--cal-text-xl);
+}
+
+h2 {
+  font-size: var(--cal-text-lg);
+  margin-top: var(--cal-space-6);
+}
+
+h3 {
+  font-size: var(--cal-text-md);
+}
+
+p {
+  color: var(--cal-text-muted);
+  max-width: 68ch;
+}
+
+.lead {
+  color: var(--cal-text);
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin-top: var(--cal-space-3);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--cal-surface);
+  border: 1px solid var(--cal-border);
+  border-radius: var(--cal-radius-md);
+  overflow: hidden;
+}
+
+th,
+td {
+  text-align: left;
+  padding: var(--cal-space-3);
+  border-bottom: 1px solid var(--cal-border);
+  font-family: var(--cal-font-mono);
+  font-size: var(--cal-text-sm);
+}
+
+thead th {
+  font-family: var(--cal-font-sans);
+  font-size: var(--cal-text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--cal-text-muted);
+  background: var(--cal-surface-alt);
+}
+
+tbody th {
+  font-family: var(--cal-font-sans);
+  font-weight: 500;
+}
+
+tbody tr:last-child th,
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.metric-note {
+  margin-top: var(--cal-space-5);
+}
