@@ -1,0 +1,28 @@
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cal-space-5);
+  padding: var(--cal-space-5);
+  background: var(--cal-surface);
+  border: 1px solid var(--cal-border);
+  border-radius: var(--cal-radius-lg);
+  box-shadow: var(--cal-shadow);
+}
+
+header {
+  display: flex;
+  justify-content: center;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cal-space-4);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: var(--cal-space-3);
+}

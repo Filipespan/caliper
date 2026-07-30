@@ -1,0 +1,25 @@
+<article class="summary">
+  <header>
+    <cal-score-gauge
+      [score]="result().score"
+      [label]="strategyLabel()"
+      [ariaLabel]="gaugeAria()"
+    />
+  </header>
+
+  <div class="rows">
+    @for (row of rows(); track row.id) {
+      <div class="row">
+        <cal-metric-bar
+          [label]="row.label"
+          [display]="row.display"
+          [value]="row.value"
+          [rating]="row.rating"
+          [goodMax]="row.goodMax"
+          [poorMin]="row.poorMin"
+        />
+        <cal-status-pill [rating]="row.rating" [label]="row.ratingLabel" />
+      </div>
+    }
+  </div>
+</article>
