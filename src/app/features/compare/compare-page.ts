@@ -92,7 +92,8 @@ export class ComparePageComponent {
     }
   }
 
-  protected run(): void {
+  protected run(event?: Event): void {
+    event?.preventDefault();
     const values = this.urls.controls.map((control) => control.value.trim()).filter((v) => v !== '');
     if (values.length < MIN_URLS || this.urls.invalid) {
       this.urls.markAllAsTouched();

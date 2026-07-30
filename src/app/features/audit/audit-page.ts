@@ -88,7 +88,9 @@ export class AuditPageComponent {
     return state.status === 'done' ? state.pair : null;
   });
 
-  protected submit(): void {
+  protected submit(event?: Event): void {
+    // Native submit, not ngSubmit: there is no NgForm here, only a lone control.
+    event?.preventDefault();
     const value = this.url.value.trim();
     if (value === '' || this.url.invalid) {
       this.url.markAsTouched();

@@ -3,7 +3,7 @@
   <p>{{ i18n.messages().tagline }}</p>
 </section>
 
-<form class="audit-form" (ngSubmit)="submit()">
+<form class="audit-form" (submit)="submit($event)">
   <mat-form-field appearance="outline" class="url-field">
     <mat-label>{{ i18n.messages().urlLabel }}</mat-label>
     <input

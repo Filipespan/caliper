@@ -3,7 +3,7 @@
   <p>{{ i18n.messages().compareIntro }}</p>
 </section>
 
-<form class="urls" (ngSubmit)="run()">
+<form class="urls" (submit)="run($event)">
   @for (control of urls.controls; track $index) {
     <div class="url-row">
       <mat-form-field appearance="outline">
