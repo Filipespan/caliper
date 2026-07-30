@@ -9,6 +9,8 @@
     "test": "ng test",
     "test:coverage": "ng test --coverage --watch=false",
     "lint": "ng lint",
+    "deploy": "npm run build && wrangler deploy",
+    "preview": "npm run build && wrangler dev",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -38,6 +40,7 @@
     "prettier": "^3.8.1",
     "typescript": "~5.9.2",
     "typescript-eslint": "8.59.2",
-    "vitest": "^4.0.8"
+    "vitest": "^4.0.8",
+    "wrangler": "^4.116.0"
   }
 }
