@@ -45,7 +45,14 @@ module.exports = defineConfig([
         {
           patterns: [
             {
-              group: ['**/core/**', '**/features/**', '**/i18n/**'],
+              group: [
+                '../core/**',
+                '../../core/**',
+                '../features/**',
+                '../../features/**',
+                '../i18n/**',
+                '../../i18n/**',
+              ],
               message: 'src/app/ui must not depend on core, features or i18n.',
             },
           ],
