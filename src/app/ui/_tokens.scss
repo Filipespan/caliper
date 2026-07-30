@@ -1,4 +1,10 @@
 @mixin dark-tokens {
+  // Material resolves its own tokens through light-dark(), which reads
+  // color-scheme and not data-theme. Without this the two disagree whenever the
+  // chosen theme is not the system one, and Material paints dark text colours on
+  // a light surface.
+  color-scheme: dark;
+
   --cal-bg: #0d1117;
   --cal-surface: #161b22;
   --cal-surface-alt: #1f262f;
@@ -76,6 +82,10 @@
   :root:not([data-theme='light']) {
     @include dark-tokens;
   }
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
 }
 
 :root[data-theme='dark'] {

@@ -17,6 +17,22 @@
   color: var(--cal-accent);
 }
 
+// The tab labels are the only Material surface that sits directly on the
+// toolbar, so they read from the same tokens as the rest of the bar instead of
+// from the Material palette.
+.shell-nav {
+  --mat-tab-inactive-label-text-color: var(--cal-text);
+  --mat-tab-inactive-focus-label-text-color: var(--cal-text);
+  --mat-tab-inactive-hover-label-text-color: var(--cal-accent);
+  --mat-tab-active-label-text-color: var(--cal-accent);
+  --mat-tab-active-focus-label-text-color: var(--cal-accent);
+  --mat-tab-active-hover-label-text-color: var(--cal-accent);
+  --mat-tab-active-indicator-color: var(--cal-accent);
+  --mat-tab-active-focus-indicator-color: var(--cal-accent);
+  --mat-tab-active-hover-indicator-color: var(--cal-accent);
+  --mat-tab-label-text-weight: 550;
+}
+
 .spacer {
   flex: 1;
 }
