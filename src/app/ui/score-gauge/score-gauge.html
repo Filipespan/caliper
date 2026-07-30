@@ -1,0 +1,16 @@
+<figure class="gauge" [attr.data-rating]="rating()">
+  <svg viewBox="0 0 100 100" role="img" [attr.aria-label]="describedLabel()">
+    <circle class="gauge-track" cx="50" cy="50" [attr.r]="radius" />
+    <circle
+      class="gauge-value"
+      cx="50"
+      cy="50"
+      [attr.r]="radius"
+      [attr.stroke-dasharray]="dashArray()"
+    />
+    <text class="gauge-number" x="50" y="50" text-anchor="middle" dominant-baseline="central">
+      {{ display() }}
+    </text>
+  </svg>
+  <figcaption>{{ label() }}</figcaption>
+</figure>

@@ -1,0 +1,56 @@
+:host {
+  display: inline-block;
+}
+
+.gauge {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--cal-space-2);
+
+  --gauge-color: var(--cal-poor);
+}
+
+.gauge[data-rating='needs-improvement'] {
+  --gauge-color: var(--cal-average);
+}
+
+.gauge[data-rating='good'] {
+  --gauge-color: var(--cal-good);
+}
+
+svg {
+  width: 108px;
+  height: 108px;
+  /* The stroke starts at 3 o'clock by default, so rotate a quarter turn back. */
+  transform: rotate(-90deg);
+}
+
+.gauge-track {
+  fill: none;
+  stroke: var(--cal-surface-alt);
+  stroke-width: 8;
+}
+
+.gauge-value {
+  fill: none;
+  stroke: var(--gauge-color);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dasharray 420ms ease;
+}
+
+.gauge-number {
+  fill: var(--gauge-color);
+  font-family: var(--cal-font-sans);
+  font-size: 30px;
+  font-weight: 650;
+  transform: rotate(90deg);
+  transform-origin: 50px 50px;
+}
+
+figcaption {
+  font-size: var(--cal-text-sm);
+  color: var(--cal-text-muted);
+}
