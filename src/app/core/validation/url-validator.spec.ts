@@ -1,31 +1,36 @@
 import { FormControl } from '@angular/forms';
+import { forEachCase } from '../../../testing/spy';
 import { isAuditableUrl, urlValidator } from './url-validator';
 
 describe('isAuditableUrl', () => {
-  it.each([
-    'https://example.com',
-    'http://example.com',
-    'https://example.com/path?query=1#hash',
-    'https://sub.domain.example.co.uk',
-    'https://xn--80ak6aa92e.com',
-    'https://münchen.de',
-    '  https://example.com  ',
-  ])('accepts %s', (value) => {
-    expect(isAuditableUrl(value)).toBe(true);
-  });
+  forEachCase(
+    'accepts',
+    [
+      'https://example.com',
+      'http://example.com',
+      'https://example.com/path?query=1#hash',
+      'https://sub.domain.example.co.uk',
+      'https://xn--80ak6aa92e.com',
+      'https://münchen.de',
+      '  https://example.com  ',
+    ],
+    (value) => expect(isAuditableUrl(value)).toBe(true),
+  );
 
-  it.each([
-    'example.com',
-    'javascript:alert(1)',
-    'data:text/html,<h1>hi</h1>',
-    'ftp://example.com',
-    'https://localhost',
-    'https://example.',
-    'https://',
-    '',
-  ])('rejects %s', (value) => {
-    expect(isAuditableUrl(value)).toBe(false);
-  });
+  forEachCase(
+    'rejects',
+    [
+      'example.com',
+      'javascript:alert(1)',
+      'data:text/html,<h1>hi</h1>',
+      'ftp://example.com',
+      'https://localhost',
+      'https://example.',
+      'https://',
+      '',
+    ],
+    (value) => expect(isAuditableUrl(value)).toBe(false),
+  );
 });
 
 describe('urlValidator', () => {

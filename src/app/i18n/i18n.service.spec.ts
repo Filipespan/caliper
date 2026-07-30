@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { stubGetter } from '../../testing/spy';
 import { I18nService } from './i18n.service';
 
 describe('I18nService', () => {
@@ -8,7 +9,7 @@ describe('I18nService', () => {
   });
 
   function serviceWithLanguage(language: string) {
-    vi.spyOn(navigator, 'language', 'get').mockReturnValue(language);
+    stubGetter(navigator, 'language', language);
     return TestBed.inject(I18nService);
   }
 

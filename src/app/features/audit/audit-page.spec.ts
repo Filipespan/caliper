@@ -20,6 +20,9 @@ describe('AuditPageComponent', () => {
 
   beforeEach(() => {
     localStorage.clear();
+    // Karma runs in a real browser, so the locale would otherwise follow the
+    // machine language and the message assertions would flip to Portuguese.
+    localStorage.setItem('caliper.locale', 'en');
     TestBed.configureTestingModule({
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });

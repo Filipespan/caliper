@@ -2,6 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Subject, switchMap } from 'rxjs';
+import { advanceClock, installFakeClock, uninstallFakeClock } from '../../../testing/spy';
 import { AuditError } from './audit-error';
 import { AuditResult, PsiResponse } from './psi.models';
 import { PsiService } from './psi.service';
@@ -67,35 +68,35 @@ describe('PsiService', () => {
   // fakeAsync would be the Angular way here, but it needs zone-testing and this
   // app runs zoneless, so the retry delays are driven by the Vitest fake clock.
   it('retries a server error with a growing delay and succeeds on the third try', async () => {
-    vi.useFakeTimers();
+    installFakeClock();
     let result: AuditResult | undefined;
     psi.audit('https://example.com', 'desktop').subscribe((value) => (result = value));
 
     http.expectOne(() => true).flush('down', { status: 503, statusText: 'Service Unavailable' });
-    await vi.advanceTimersByTimeAsync(700);
+    await advanceClock(700);
     http.expectOne(() => true).flush('down', { status: 503, statusText: 'Service Unavailable' });
-    await vi.advanceTimersByTimeAsync(1400);
+    await advanceClock(1400);
     http.expectOne(() => true).flush(body);
 
     expect(result?.strategy).toBe('desktop');
-    vi.useRealTimers();
+    uninstallFakeClock();
   });
 
   it('gives up after the retry budget', async () => {
-    vi.useFakeTimers();
+    installFakeClock();
     let failure: AuditError | undefined;
     psi.audit('https://example.com', 'mobile').subscribe({
       error: (error: AuditError) => (failure = error),
     });
 
     http.expectOne(() => true).flush('down', { status: 500, statusText: 'Server Error' });
-    await vi.advanceTimersByTimeAsync(700);
+    await advanceClock(700);
     http.expectOne(() => true).flush('down', { status: 500, statusText: 'Server Error' });
-    await vi.advanceTimersByTimeAsync(1400);
+    await advanceClock(1400);
     http.expectOne(() => true).flush('down', { status: 500, statusText: 'Server Error' });
 
     expect(failure?.kind).toBe('server');
-    vi.useRealTimers();
+    uninstallFakeClock();
   });
 
   it('runs mobile and desktop in parallel', () => {
