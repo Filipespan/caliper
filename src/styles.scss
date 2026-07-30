@@ -1,4 +1,22 @@
+@use '@angular/material' as mat;
 @use './app/ui/tokens';
+
+// Material only shows up in the shell and in the form fields, so the theme is
+// here to keep those two consistent with the tokens, nothing more.
+html {
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$spring-green-palette,
+      ),
+      typography: (
+        plain-family: system-ui,
+        brand-family: system-ui,
+      ),
+      density: 0,
+    )
+  );
+}
 
 *,
 *::before,

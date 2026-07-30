@@ -1,1 +1,100 @@
-<router-outlet />
+<a class="cal-skip-link" href="#main">{{ i18n.messages().skipToContent }}</a>
+
+<mat-toolbar class="shell-bar">
+  <span class="brand">
+    <svg
+      viewBox="0 0 32 32"
+      width="22"
+      height="22"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.4"
+      stroke-linecap="round"
+      aria-hidden="true"
+    >
+      <path d="M8 4v24" />
+      <path d="M24 10v18" />
+      <path d="M4 8h24" />
+    </svg>
+    {{ i18n.messages().appName }}
+  </span>
+
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="shell-nav">
+    @for (link of links; track link.path) {
+      <a
+        mat-tab-link
+        [routerLink]="link.path"
+        routerLinkActive
+        #active="routerLinkActive"
+        [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+        [active]="active.isActive"
+      >
+        {{ i18n.messages()[link.labelKey] }}
+      </a>
+    }
+  </nav>
+
+  <span class="spacer"></span>
+
+  <label class="locale">
+    <span class="visually-hidden">{{ i18n.messages().languageLabel }}</span>
+    <select [value]="i18n.locale()" (change)="changeLocale($any($event.target).value)">
+      @for (locale of i18n.locales; track locale) {
+        <option [value]="locale">{{ locale === 'en' ? 'English' : 'Português' }}</option>
+      }
+    </select>
+  </label>
+
+  <button
+    matIconButton
+    type="button"
+    [attr.aria-label]="i18n.messages().themeToggle"
+    [attr.aria-pressed]="darkActive()"
+    (click)="toggleTheme()"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      aria-hidden="true"
+    >
+      @if (darkActive()) {
+        <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" />
+      } @else {
+        <circle cx="12" cy="12" r="4.4" />
+        <path
+          d="M12 2.6v2.2M12 19.2v2.2M4.4 12H2.2M21.8 12h-2.2M6.3 6.3 4.8 4.8M19.2 19.2l-1.5-1.5M17.7 6.3l1.5-1.5M4.8 19.2l1.5-1.5"
+        />
+      }
+    </svg>
+  </button>
+</mat-toolbar>
+
+<mat-tab-nav-panel #tabPanel id="main">
+  <router-outlet />
+</mat-tab-nav-panel>
+
+<footer class="shell-foot">
+  <details>
+    <summary>{{ i18n.messages().settingsTitle }}</summary>
+    <p>{{ i18n.messages().settingsBody }}</p>
+    <div class="key-row">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ i18n.messages().settingsTitle }}</mat-label>
+        <input matInput type="password" autocomplete="off" [formControl]="apiKey" />
+      </mat-form-field>
+      <button matButton="filled" type="button" (click)="saveKey()">
+        {{ i18n.messages().settingsSave }}
+      </button>
+      @if (settings.apiKey() !== null) {
+        <button matButton type="button" (click)="clearKey()">
+          {{ i18n.messages().settingsClear }}
+        </button>
+      }
+    </div>
+  </details>
+</footer>
