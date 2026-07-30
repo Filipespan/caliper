@@ -1,0 +1,83 @@
+@mixin dark-tokens {
+  --cal-bg: #0d1117;
+  --cal-surface: #161b22;
+  --cal-surface-alt: #1f262f;
+  --cal-text: #e9edf3;
+  --cal-text-muted: #a4b0c0;
+  --cal-border: #2c343d;
+  --cal-accent: #2dd4bf;
+  --cal-accent-contrast: #06231f;
+  --cal-focus: #2dd4bf;
+
+  --cal-good: #3ddc84;
+  --cal-average: #ffb547;
+  --cal-poor: #ff7b72;
+  --cal-good-bg: #10281c;
+  --cal-average-bg: #2c2113;
+  --cal-poor-bg: #2d1917;
+
+  --cal-shadow:
+    0 1px 2px rgb(0 0 0 / 40%),
+    0 10px 30px rgb(0 0 0 / 35%);
+}
+
+:root {
+  color-scheme: light dark;
+
+  --cal-font-sans:
+    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --cal-font-mono: ui-monospace, 'SFMono-Regular', 'Cascadia Code', Consolas, monospace;
+
+  --cal-text-xs: 0.75rem;
+  --cal-text-sm: 0.875rem;
+  --cal-text-md: 1rem;
+  --cal-text-lg: 1.25rem;
+  --cal-text-xl: 1.75rem;
+  --cal-text-2xl: 2.25rem;
+
+  --cal-space-1: 0.25rem;
+  --cal-space-2: 0.5rem;
+  --cal-space-3: 0.75rem;
+  --cal-space-4: 1rem;
+  --cal-space-5: 1.5rem;
+  --cal-space-6: 2rem;
+  --cal-space-7: 3rem;
+
+  --cal-radius-sm: 6px;
+  --cal-radius-md: 10px;
+  --cal-radius-lg: 16px;
+  --cal-radius-pill: 999px;
+
+  --cal-bg: #f6f7f9;
+  --cal-surface: #ffffff;
+  --cal-surface-alt: #eef1f5;
+  --cal-text: #14181f;
+  --cal-text-muted: #4d5768;
+  --cal-border: #d7dce4;
+  --cal-accent: #0f766e;
+  --cal-accent-contrast: #ffffff;
+  --cal-focus: #0f766e;
+
+  /* Scoring bands follow the Lighthouse bands, but darkened until every
+     foreground/background pair clears 4.5:1 in both themes. */
+  --cal-good: #056f3c;
+  --cal-average: #8a5200;
+  --cal-poor: #b3261e;
+  --cal-good-bg: #dff3e6;
+  --cal-average-bg: #fdf0d9;
+  --cal-poor-bg: #fbe3e1;
+
+  --cal-shadow:
+    0 1px 2px rgb(16 24 40 / 6%),
+    0 8px 24px rgb(16 24 40 / 6%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @include dark-tokens;
+  }
+}
+
+:root[data-theme='dark'] {
+  @include dark-tokens;
+}

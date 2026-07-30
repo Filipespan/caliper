@@ -1,1 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
+@use './app/ui/tokens';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cal-bg);
+  color: var(--cal-text);
+  font-family: var(--cal-font-sans);
+  font-size: var(--cal-text-md);
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0;
+}
+
+a {
+  color: var(--cal-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cal-focus);
+  outline-offset: 2px;
+  border-radius: var(--cal-radius-sm);
+}
+
+.cal-skip-link {
+  position: absolute;
+  left: var(--cal-space-3);
+  top: calc(-1 * var(--cal-space-7));
+  z-index: 20;
+  padding: var(--cal-space-2) var(--cal-space-4);
+  background: var(--cal-surface);
+  border: 1px solid var(--cal-border);
+  border-radius: var(--cal-radius-sm);
+  transition: top 120ms ease;
+
+  &:focus {
+    top: var(--cal-space-3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
