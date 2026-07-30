@@ -26,7 +26,7 @@ I picked Angular because the interesting part of this problem is coordination, n
 
 The app is standalone and zoneless. Every component is OnPush, every dependency arrives through `inject`, and there is not a single NgModule.
 
-What I would change: Angular Material costs more than it gives here. The toolbar, tabs, form field and snack bar push the initial bundle to 555 kB raw, 130 kB over the wire, and that alone is why the mobile Lighthouse score is 61 while the desktop score is 96. The four visual components that actually matter are mine and weigh almost nothing. If this were a product and not a portfolio piece, I would drop Material from the shell, keep it inside the lazy routes, and get most of that back.
+What I would change: Angular Material costs more than it gives here. The toolbar, tabs, form field and snack bar push the initial bundle to 555 kB raw, 130 kB over the wire, and that alone is why the mobile Lighthouse score is 64 while the desktop score is 95. The four visual components that actually matter are mine and weigh almost nothing. If this were a product and not a portfolio piece, I would drop Material from the shell, keep it inside the lazy routes, and get most of that back.
 
 Second thing I would change: the audit is a single Lighthouse run, so two runs of the same page can differ by a few points. Averaging three runs would be more honest, and three times slower.
 
@@ -65,10 +65,10 @@ Lighthouse on the production build, served locally over gzip. Not on the deploye
 
 | Preset | Performance | Accessibility | Best practices | SEO |
 | --- | --- | --- | --- | --- |
-| Desktop | 96 | 100 | 81 | 100 |
-| Mobile | 61 | 100 | 82 | 100 |
+| Desktop | 95 | 100 | 81 | 100 |
+| Mobile | 64 | 100 | 82 | 100 |
 
-Desktop LCP is 1.3 s. Mobile LCP is 7.1 s under the simulated slow 4G connection, and the initial bundle is the reason, as described above. Lazy routes are small: 14 kB for the audit page, 8 kB for compare, 3 kB for the thresholds page.
+Desktop LCP is 1.4 s. Mobile LCP is 6.9 s under the simulated slow 4G connection, and the initial bundle is the reason, as described above. Lazy routes are small: 14 kB for the audit page, 8 kB for compare, 3 kB for the thresholds page.
 
 The four SVG components (score gauge, metric bar, status pill, empty state) are hand written. A charting library for three simple shapes would have cost tens of kilobytes and given nothing back.
 
