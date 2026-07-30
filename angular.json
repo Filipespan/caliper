@@ -76,6 +76,15 @@
             "coverageExclude": ["src/main.ts", "src/testing/**", "**/*.spec.ts"]
           }
         },
+        "test-karma": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "runner": "karma",
+            "runnerConfig": "karma.conf.js",
+            "browsers": ["ChromeHeadless"],
+            "watch": false
+          }
+        },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
