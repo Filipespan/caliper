@@ -1,0 +1,96 @@
+<section class="intro">
+  <h1>{{ i18n.messages().compareTitle }}</h1>
+  <p>{{ i18n.messages().compareIntro }}</p>
+</section>
+
+<form class="urls" (ngSubmit)="run()">
+  @for (control of urls.controls; track $index) {
+    <div class="url-row">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ i18n.messages().urlLabel }} {{ $index + 1 }}</mat-label>
+        <input
+          matInput
+          type="url"
+          inputmode="url"
+          [formControl]="control"
+          [placeholder]="i18n.messages().urlPlaceholder"
+        />
+        @if (control.touched && control.invalid) {
+          <mat-error>{{ i18n.messages().urlInvalid }}</mat-error>
+        }
+      </mat-form-field>
+      @if (urls.length > 2) {
+        <button
+          matButton
+          type="button"
+          [attr.aria-label]="i18n.messages().compareRemoveUrl + ' ' + ($index + 1)"
+          (click)="removeUrl($index)"
+        >
+          &times;
+        </button>
+      }
+    </div>
+  }
+
+  <div class="actions">
+    @if (urls.length < maxUrls) {
+      <button matButton type="button" (click)="addUrl()">
+        {{ i18n.messages().compareAddUrl }}
+      </button>
+    }
+    <button matButton="filled" type="submit" [disabled]="running()">
+      {{ i18n.messages().compareRun }}
+    </button>
+  </div>
+</form>
+
+@if (running()) {
+  <p class="status" role="status">
+    {{ i18n.format('compareProgress', { done: progress().rows.length, total: progress().total }) }}
+  </p>
+}
+
+@if (table().length === 0) {
+  <cal-empty-state
+    [title]="i18n.messages().compareEmptyTitle"
+    [description]="i18n.messages().compareEmptyBody"
+  />
+} @else {
+  <div class="table-scroll">
+    <table>
+      <caption class="visually-hidden">
+        {{ i18n.messages().compareDelta }}
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">{{ i18n.messages().urlLabel }}</th>
+          <th scope="col">{{ i18n.messages().performanceScore }}</th>
+          @for (cell of table()[0].cells; track cell.id) {
+            <th scope="col">{{ cell.label }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of table(); track row.url) {
+          <tr>
+            <th scope="row">
+              <span class="url">{{ row.url }}</span>
+              @if (row.isBaseline) {
+                <span class="baseline">{{ i18n.messages().compareBaseline }}</span>
+              }
+            </th>
+            <td class="score">{{ row.score ?? '--' }}</td>
+            @for (cell of row.cells; track cell.id) {
+              <td>
+                <cal-status-pill [rating]="cell.rating" [label]="cell.display" />
+                @if (cell.delta; as delta) {
+                  <span class="delta">{{ delta }}</span>
+                }
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
